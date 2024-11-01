@@ -17,7 +17,7 @@ const SearchBar = () => {
     const fetchCity = async (value) => {
         setSearchResult('Searching...');
         //get lat and lon from geocoder
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=1&appid=${API_KEY}`).then(response => response.json()).then(data => {
+        fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=1&appid=${API_KEY}`).then(response => response.json()).then(data => {
             if (data.length == 0) {
                 setWeatherData(null); // Remove dashboard
                 setSearchResult('City not found :(');
