@@ -1,0 +1,26 @@
+#greeter {
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    width: 350px;
+    font-family: Georgia, 'Times New Roman', Times, serifrelative;
+    color: #B6EADA;
+}
+
+.bigheader {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 2rem;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.smallheader {
+    display: flex;
+    justify-content: center;
+}

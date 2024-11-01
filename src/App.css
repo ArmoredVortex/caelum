@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+.container {
+    display: flex;
+    justify-content: center;
+    margin: 20px auto;
+}
+
+.search-bar-container {
+    width: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+    justify-content: center;
+}
