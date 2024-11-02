@@ -1,10 +1,11 @@
-// import React from 'react'
 import './Dashboard.css'
 import PropTypes from 'prop-types'
 import { FiSunrise, FiSunset } from "react-icons/fi";
 import { WiHumidity } from "react-icons/wi";
 import { HiMiniArrowDownCircle, HiMiniArrowUpCircle } from "react-icons/hi2";
 import { FaWind } from "react-icons/fa6";
+import { useEffect } from 'react';
+import { useReducer } from 'react';
 
 const API_KEY = import.meta.env.VITE_OMW;
 
@@ -16,24 +17,50 @@ const convertUnixToIST = (unixTime) => {
     return timeInIST;
 };
 
+let weeklyForecast = [];
+
 const Dashboard = ({ weatherData }) => {
+
+    const [reducerValue, forceUpdate] = useReducer((x) => x + 1, 0);
+
+    useEffect(() => {
+        console.log('Dashboard component mounted');
+        return () => {
+            console.log('Dashboard component unmounted');
+        };
+    }, [reducerValue]);
+
     if (weatherData === null) {
         return null;
     }
     console.log(weatherData);
 
-    const weeklyForecast = [
-        { date: '29/10', temp: 20, icon: '🌤️' },
-    ];
-
     async function fetchWeatherForecast() {
+        if (weeklyForecast.length == 5) {
+            return;
+        }
         try {
             const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${weatherData.coord.lat}&lon=${weatherData.coord.lon}&appid=${API_KEY}`);
             if (!response.ok) throw new Error("Network response was not ok");
             const data = await response.json();
-            console.log('----------')
-            console.log(data);
+            console.log('API CALL: Fetching 5-day forecast');
 
+
+            // push data to weeklyForecast (the data is for every 3 hours, so we need to get the data for 5 days) so we get every 2nd element for the day
+            weeklyForecast = [];
+            // get data for first 5 days only
+            for (let i = 0; i < 40; i += 8) {
+                const date = new Date(data.list[i].dt * 1000);
+                const day = date.toLocaleString('en-IN', { weekday: 'short' });
+                const icon = data.list[i].weather[0].icon;
+                const temp = (data.list[i].main.temp - 273).toFixed(1);
+                weeklyForecast.push({ date: day, icon: <img src={`http://openweathermap.org/img/wn/${icon.slice(0, -1)}d.png`} alt="weather icon" />, temp });
+
+
+            }
+
+            console.log(weeklyForecast);
+            forceUpdate();
 
         } catch (error) {
             console.error("Error fetching weather forecast:", error);
@@ -112,8 +139,6 @@ const Dashboard = ({ weatherData }) => {
                 {/* Header */}
                 <div className="weather-header">
                     <h2 className="section-title">Week</h2>
-
-                    {/* weekly forecast */}
                     <div className="weekly-forecast">
                         {weeklyForecast.map((week) => (
                             <div key={week.date} className="week-card">

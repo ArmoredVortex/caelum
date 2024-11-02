@@ -18,13 +18,14 @@ const SearchBar = () => {
         setSearchResult('Searching...');
         //get lat and lon from geocoder
         fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=1&appid=${API_KEY}`).then(response => response.json()).then(data => {
+            console.log('API CALL: Fetching coords from geocoder');
             if (data.length == 0) {
                 setWeatherData(null); // Remove dashboard
                 setSearchResult('City not found :(');
                 return;
             }
-            console.log(data);
             fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${data[0].lat}&lon=${data[0].lon}&appid=${API_KEY}`).then(response => response.json()).then(data => {
+                console.log('API CALL: Fetching weather data');
                 setEnabled(false);
                 setWeatherData(data);
                 setSearchResult(null);
@@ -47,7 +48,6 @@ const SearchBar = () => {
                     onChange={(e) => setInput(e.target.value)}
                     onKeyUp={(e) => {
                         if (e.key === 'Enter') {
-                            console.log('enter pressed');
                             fetchCity(input);
                         }
                     }}
