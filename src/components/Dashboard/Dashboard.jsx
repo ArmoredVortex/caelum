@@ -144,7 +144,7 @@ const Dashboard = ({ weatherData }) => {
                             <div key={week.date} className="week-card">
                                 <div className="week-date">{week.date}</div>
                                 <div className="week-icon">{week.icon}</div>
-                                <div className="week-temp">{week.temp}°</div>
+                                <div className="week-temp">{week.temp}°C</div>
                             </div>
                         ))}
                     </div>

@@ -1,6 +1,6 @@
 #dashboard {
     height: 80vh;
-    width: 95vw;
+    width: 90vw;
     display: inline-block;
     background-color: #1a1a2e;
     margin: 20px;
@@ -37,7 +37,7 @@
     border-radius: 0.5rem;
     padding: 0.5rem;
     text-align: center;
-    min-width: 60px;
+    /* min-width: 60px; */
 }
 
 .week-date {
