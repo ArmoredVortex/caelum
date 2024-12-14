@@ -1,0 +1,62 @@
+#citysidebar {
+    width: 200px;
+    height: 80%;
+    background-color: #061522;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* position it to the right */
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    z-index: 1000;
+
+}
+
+#cityinput {
+    height: 25px;
+    width: 140px;
+    border: 2px solid white;
+    border-radius: 5px;
+    color: white;
+}
+
+#addbutton {
+    background-color: #1e7f95;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+
+}
+
+#clearbutton {
+    background-color: #1e7f95;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+.clrbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.citylist {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.citylist div {
+    margin: 5px;
+    color: white;
+    cursor: pointer;
+}
